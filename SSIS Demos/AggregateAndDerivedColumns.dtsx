@@ -1,0 +1,1570 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/11/2016 1:05:23 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-P42C8U26"
+  DTS:CreatorName="LAPTOP-P42C8U26\elawa"
+  DTS:DTSID="{A490E569-95F7-44C6-BD1D-9F2E0127E77F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="AggregateAndDerivedColumns"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{C745F2BE-6B5C-4EEA-B736-B7CB41016CE8}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-P42C8U26\SQLEXPRESS.AdventureWorksLT2012]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{E2BBA257-9E08-47CA-8BD4-6083284C376D}"
+      DTS:ObjectName="LAPTOP-P42C8U26\SQLEXPRESS.AdventureWorksLT2012">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=LAPTOP-P42C8U26\SQLEXPRESS;Initial Catalog=AdventureWorksLT2012;Integrated Security=True;Application Name=SSIS-AggregateAndDerivedColumns-{E2BBA257-9E08-47CA-8BD4-6083284C376D}LAPTOP-P42C8U26\SQLEXPRESS.AdventureWorksLT2012;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-P42C8U26\SQLEXPRESS.DWAdventureWorksLT2012v1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{DB109BDF-4F10-4DB4-90E4-7AD12FD58CB1}"
+      DTS:ObjectName="LAPTOP-P42C8U26\SQLEXPRESS.DWAdventureWorksLT2012v1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=LAPTOP-P42C8U26\SQLEXPRESS;Initial Catalog=DWAdventureWorksLT2012v1;Integrated Security=True;Application Name=SSIS-AggregateAndDerivedColumns-{DB109BDF-4F10-4DB4-90E4-7AD12FD58CB1}LAPTOP-P42C8U26\SQLEXPRESS.DWAdventureWorksLT2012v1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Aggregate Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{8D673922-16CD-48E7-9F57-363D83D86608}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Aggregate Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Aggregate Data Flow Task\ADO NET Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."FactSales"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Aggregate Data Flow Task\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-P42C8U26\SQLEXPRESS.DWAdventureWorksLT2012v1]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-P42C8U26\SQLEXPRESS.DWAdventureWorksLT2012v1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[SalesOrderID]"
+                      cachedDataType="i4"
+                      cachedName="SalesOrderID"
+                      externalMetadataColumnId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[SalesOrderID]"
+                      lineageId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[SalesOrderID]" />
+                    <inputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[SalesOrderDetailID]"
+                      cachedDataType="i4"
+                      cachedName="SalesOrderDetailID"
+                      externalMetadataColumnId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[SalesOrderDetailID]"
+                      lineageId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[SalesOrderDetailID]" />
+                    <inputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[OrderDateKey]"
+                      cachedDataType="i4"
+                      cachedName="OrderDateKey"
+                      externalMetadataColumnId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[OrderDateKey]"
+                      lineageId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[OrderDateKey]" />
+                    <inputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[ShipDateKey]"
+                      cachedDataType="i4"
+                      cachedName="ShipDateKey"
+                      externalMetadataColumnId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ShipDateKey]"
+                      lineageId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[ShipDateKey]" />
+                    <inputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[CustomerKey]"
+                      cachedDataType="i4"
+                      cachedName="CustomerKey"
+                      externalMetadataColumnId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CustomerKey]"
+                      lineageId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[CustomerKey]" />
+                    <inputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[ProductKey]"
+                      cachedDataType="i4"
+                      cachedName="ProductKey"
+                      externalMetadataColumnId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ProductKey]"
+                      lineageId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[ProductKey]" />
+                    <inputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[SumOfOrderQty]"
+                      cachedDataType="i8"
+                      cachedName="SumOfOrderQty"
+                      externalMetadataColumnId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[OrderQty]"
+                      lineageId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[SumOfOrderQty]" />
+                    <inputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[SumOfUnitPrice]"
+                      cachedDataType="cy"
+                      cachedName="SumOfUnitPrice"
+                      externalMetadataColumnId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[UnitPrice]"
+                      lineageId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[SumOfUnitPrice]" />
+                    <inputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[SumOfUnitPriceDiscount]"
+                      cachedDataType="cy"
+                      cachedName="SumOfUnitPriceDiscount"
+                      externalMetadataColumnId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[UnitPriceDiscount]"
+                      lineageId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[SumOfUnitPriceDiscount]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[SalesOrderID]"
+                      dataType="i4"
+                      name="SalesOrderID" />
+                    <externalMetadataColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[SalesOrderDetailID]"
+                      dataType="i4"
+                      name="SalesOrderDetailID" />
+                    <externalMetadataColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[OrderDateKey]"
+                      dataType="i4"
+                      name="OrderDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ShipDateKey]"
+                      dataType="i4"
+                      name="ShipDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CustomerKey]"
+                      dataType="i4"
+                      name="CustomerKey" />
+                    <externalMetadataColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ProductKey]"
+                      dataType="i4"
+                      name="ProductKey" />
+                    <externalMetadataColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[OrderQty]"
+                      dataType="i2"
+                      name="OrderQty" />
+                    <externalMetadataColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[UnitPrice]"
+                      dataType="numeric"
+                      name="UnitPrice"
+                      precision="19"
+                      scale="255" />
+                    <externalMetadataColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[UnitPriceDiscount]"
+                      dataType="numeric"
+                      name="UnitPriceDiscount"
+                      precision="19"
+                      scale="255" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Aggregate Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Aggregate Data Flow Task\ADO NET Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="ADO NET Source"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+  SalesOrderID = T2.SalesOrderID
+, SalesOrderDetailID = T1.SalesOrderDetailID
+, OrderDateKey = T6.CalendarDateKey
+, ShipDateKey = T5.CalendarDateKey
+, CustomerKey = T4.CustomerKey
+, ProductKey = T3.ProductKey
+, OrderQty = T1.OrderQty
+, UnitPrice = T1.UnitPrice
+, UnitPriceDiscount = T1.UnitPriceDiscount
+FROM  [AdventureWorksLT2012].SalesLT.SalesOrderDetail as T1
+JOIN [AdventureWorksLT2012].SalesLT.SalesOrderHeader as T2
+	ON T1.SalesOrderID = T2.SalesOrderID
+JOIN DWAdventureWorksLT2012v1.dbo.DimProducts as T3
+	ON T1.ProductID = T3.ProductID
+JOIN DWAdventureWorksLT2012v1.dbo.DimCustomers as T4
+	ON T2.CustomerID = T4.CustomerID
+JOIN DWAdventureWorksLT2012v1.dbo. DimDates as T5
+	ON Cast(T2.ShipDate as date) = Cast(T5.CalendarDate as date)
+JOIN DWAdventureWorksLT2012v1.dbo. DimDates as T6
+	ON Cast(T2.OrderDate as date) = Cast(T6.CalendarDate as date)
+ORDER BY 
+1,2,3,4,5,6</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Aggregate Data Flow Task\ADO NET Source.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-P42C8U26\SQLEXPRESS.AdventureWorksLT2012]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-P42C8U26\SQLEXPRESS.AdventureWorksLT2012]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesOrderID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[SalesOrderID]"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesOrderID]"
+                      name="SalesOrderID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesOrderDetailID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[SalesOrderDetailID]"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesOrderDetailID]"
+                      name="SalesOrderDetailID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[OrderDateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[OrderDateKey]"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[OrderDateKey]"
+                      name="OrderDateKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[ShipDateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[ShipDateKey]"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[ShipDateKey]"
+                      name="ShipDateKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CustomerKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CustomerKey]"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CustomerKey]"
+                      name="CustomerKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[ProductKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[ProductKey]"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[ProductKey]"
+                      name="ProductKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[OrderQty]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[OrderQty]"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[OrderQty]"
+                      name="OrderQty"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[UnitPrice]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[UnitPrice]"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[UnitPrice]"
+                      name="UnitPrice"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[UnitPriceDiscount]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[UnitPriceDiscount]"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[UnitPriceDiscount]"
+                      name="UnitPriceDiscount"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[SalesOrderID]"
+                      dataType="i4"
+                      name="SalesOrderID" />
+                    <externalMetadataColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[SalesOrderDetailID]"
+                      dataType="i4"
+                      name="SalesOrderDetailID" />
+                    <externalMetadataColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[OrderDateKey]"
+                      dataType="i4"
+                      name="OrderDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[ShipDateKey]"
+                      dataType="i4"
+                      name="ShipDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CustomerKey]"
+                      dataType="i4"
+                      name="CustomerKey" />
+                    <externalMetadataColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[ProductKey]"
+                      dataType="i4"
+                      name="ProductKey" />
+                    <externalMetadataColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[OrderQty]"
+                      dataType="i2"
+                      name="OrderQty" />
+                    <externalMetadataColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[UnitPrice]"
+                      dataType="cy"
+                      name="UnitPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[UnitPriceDiscount]"
+                      dataType="cy"
+                      name="UnitPriceDiscount" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[SalesOrderID]"
+                      dataType="i4"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[SalesOrderID]"
+                      name="SalesOrderID" />
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[SalesOrderDetailID]"
+                      dataType="i4"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[SalesOrderDetailID]"
+                      name="SalesOrderDetailID" />
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[OrderDateKey]"
+                      dataType="i4"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[OrderDateKey]"
+                      name="OrderDateKey" />
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ShipDateKey]"
+                      dataType="i4"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ShipDateKey]"
+                      name="ShipDateKey" />
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CustomerKey]"
+                      dataType="i4"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CustomerKey]"
+                      name="CustomerKey" />
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ProductKey]"
+                      dataType="i4"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ProductKey]"
+                      name="ProductKey" />
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[OrderQty]"
+                      dataType="i2"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[OrderQty]"
+                      name="OrderQty" />
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[UnitPrice]"
+                      dataType="cy"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[UnitPrice]"
+                      name="UnitPrice" />
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[UnitPriceDiscount]"
+                      dataType="cy"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[UnitPriceDiscount]"
+                      name="UnitPriceDiscount" />
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Aggregate Data Flow Task\Aggregate"
+              componentClassID="Microsoft.Aggregate"
+              contactInfo="Aggregate;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Aggregates data with functions such as Average, Sum, Count, Max, and Min. For example, group data to compute the sum of sales per product or the average visits per day."
+              name="Aggregate"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                  name="KeyScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                  name="Keys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of distinct values in a column that the aggregation counts distinctly. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no CountDistinctScale value is used."
+                  name="CountDistinctScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of distinct values in a column that the aggregation counts distinctly. If a CountDistinctScale value is specified, the value in CountDistinctKeys takes precedence."
+                  name="CountDistinctKeys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage by which memory can be extended during the aggregation. Valid values are between 1 and 100."
+                  name="AutoExtendFactor">25</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Aggregate Data Flow Task\Aggregate.Inputs[Aggregate Input 1]"
+                  name="Aggregate Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Aggregate Data Flow Task\Aggregate.Inputs[Aggregate Input 1].Columns[SalesOrderID]"
+                      cachedDataType="i4"
+                      cachedName="SalesOrderID"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesOrderID]" />
+                    <inputColumn
+                      refId="Package\Aggregate Data Flow Task\Aggregate.Inputs[Aggregate Input 1].Columns[SalesOrderDetailID]"
+                      cachedDataType="i4"
+                      cachedName="SalesOrderDetailID"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesOrderDetailID]" />
+                    <inputColumn
+                      refId="Package\Aggregate Data Flow Task\Aggregate.Inputs[Aggregate Input 1].Columns[OrderDateKey]"
+                      cachedDataType="i4"
+                      cachedName="OrderDateKey"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[OrderDateKey]" />
+                    <inputColumn
+                      refId="Package\Aggregate Data Flow Task\Aggregate.Inputs[Aggregate Input 1].Columns[ShipDateKey]"
+                      cachedDataType="i4"
+                      cachedName="ShipDateKey"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[ShipDateKey]" />
+                    <inputColumn
+                      refId="Package\Aggregate Data Flow Task\Aggregate.Inputs[Aggregate Input 1].Columns[CustomerKey]"
+                      cachedDataType="i4"
+                      cachedName="CustomerKey"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CustomerKey]" />
+                    <inputColumn
+                      refId="Package\Aggregate Data Flow Task\Aggregate.Inputs[Aggregate Input 1].Columns[ProductKey]"
+                      cachedDataType="i4"
+                      cachedName="ProductKey"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[ProductKey]" />
+                    <inputColumn
+                      refId="Package\Aggregate Data Flow Task\Aggregate.Inputs[Aggregate Input 1].Columns[OrderQty]"
+                      cachedDataType="i2"
+                      cachedName="OrderQty"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[OrderQty]" />
+                    <inputColumn
+                      refId="Package\Aggregate Data Flow Task\Aggregate.Inputs[Aggregate Input 1].Columns[UnitPrice]"
+                      cachedDataType="cy"
+                      cachedName="UnitPrice"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[UnitPrice]" />
+                    <inputColumn
+                      refId="Package\Aggregate Data Flow Task\Aggregate.Inputs[Aggregate Input 1].Columns[UnitPriceDiscount]"
+                      cachedDataType="cy"
+                      cachedName="UnitPriceDiscount"
+                      lineageId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[UnitPriceDiscount]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1]"
+                  name="Aggregate Output 1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                      name="KeyScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                      name="Keys" />
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[SalesOrderID]"
+                      dataType="i4"
+                      lineageId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[SalesOrderID]"
+                      name="SalesOrderID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesOrderID]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[SalesOrderDetailID]"
+                      dataType="i4"
+                      lineageId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[SalesOrderDetailID]"
+                      name="SalesOrderDetailID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesOrderDetailID]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[OrderDateKey]"
+                      dataType="i4"
+                      lineageId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[OrderDateKey]"
+                      name="OrderDateKey">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[OrderDateKey]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[ShipDateKey]"
+                      dataType="i4"
+                      lineageId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[ShipDateKey]"
+                      name="ShipDateKey">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[ShipDateKey]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[CustomerKey]"
+                      dataType="i4"
+                      lineageId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[CustomerKey]"
+                      name="CustomerKey">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CustomerKey]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[ProductKey]"
+                      dataType="i4"
+                      lineageId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[ProductKey]"
+                      name="ProductKey">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[ProductKey]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[SumOfOrderQty]"
+                      dataType="i8"
+                      lineageId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[SumOfOrderQty]"
+                      name="SumOfOrderQty">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[OrderQty]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[SumOfUnitPrice]"
+                      dataType="cy"
+                      lineageId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[SumOfUnitPrice]"
+                      name="SumOfUnitPrice">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[UnitPrice]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[SumOfUnitPriceDiscount]"
+                      dataType="cy"
+                      lineageId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[SumOfUnitPriceDiscount]"
+                      name="SumOfUnitPriceDiscount">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[UnitPriceDiscount]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Aggregate Data Flow Task.Paths[ADO NET Source Output]"
+              endId="Package\Aggregate Data Flow Task\Aggregate.Inputs[Aggregate Input 1]"
+              name="ADO NET Source Output"
+              startId="Package\Aggregate Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Aggregate Data Flow Task.Paths[Aggregate Output 1]"
+              endId="Package\Aggregate Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="Aggregate Output 1"
+              startId="Package\Aggregate Data Flow Task\Aggregate.Outputs[Aggregate Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Derevies Column Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{593E0210-BC3C-498B-95AA-346C0C4CE77A}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Derevies Column Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Derevies Column Data Flow Task\ADO NET Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DimCustomers"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Derevies Column Data Flow Task\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-P42C8U26\SQLEXPRESS.DWAdventureWorksLT2012v1]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-P42C8U26\SQLEXPRESS.DWAdventureWorksLT2012v1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Derevies Column Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[CustomerID]"
+                      cachedDataType="i4"
+                      cachedName="CustomerID"
+                      externalMetadataColumnId="Package\Derevies Column Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CustomerID]"
+                      lineageId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CustomerID]" />
+                    <inputColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[CompanyName]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="CompanyName"
+                      externalMetadataColumnId="Package\Derevies Column Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CompanyName]"
+                      lineageId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CompanyName]" />
+                    <inputColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[ContactFullName]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="ContactFullName"
+                      externalMetadataColumnId="Package\Derevies Column Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ContactFullName]"
+                      lineageId="Package\Derevies Column Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ContactFullName]" />
+                    <inputColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[SalesPersonAlias]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="SalesPersonAlias"
+                      externalMetadataColumnId="Package\Derevies Column Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[SalesPersonAlias]"
+                      lineageId="Package\Derevies Column Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[SalesPersonAlias]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CustomerKey]"
+                      dataType="i4"
+                      name="CustomerKey" />
+                    <externalMetadataColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CustomerID]"
+                      dataType="i4"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ContactFullName]"
+                      dataType="wstr"
+                      length="200"
+                      name="ContactFullName" />
+                    <externalMetadataColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CompanyName]"
+                      dataType="wstr"
+                      length="200"
+                      name="CompanyName" />
+                    <externalMetadataColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[SalesPersonAlias]"
+                      dataType="wstr"
+                      length="200"
+                      name="SalesPersonAlias" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Derevies Column Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Derevies Column Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Derevies Column Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Derevies Column Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Derevies Column Data Flow Task\ADO NET Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="ADO NET Source"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+  [CustomerID] 
+, [FirstName] 
+, [LastName]
+, [CompanyName] = Cast( [CompanyName] AS nvarchar(200) )
+, [SalesPerson] = Cast( [SalesPerson] AS nvarchar(200) )
+FROM [AdventureWorksLT2012].[SalesLT].[Customer]
+ORDER BY [CustomerID]</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Derevies Column Data Flow Task\ADO NET Source.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-P42C8U26\SQLEXPRESS.AdventureWorksLT2012]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-P42C8U26\SQLEXPRESS.AdventureWorksLT2012]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CustomerID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CustomerID]"
+                      lineageId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CustomerID]"
+                      name="CustomerID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      length="50"
+                      lineageId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      length="50"
+                      lineageId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CompanyName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CompanyName]"
+                      length="200"
+                      lineageId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CompanyName]"
+                      name="CompanyName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesPerson]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[SalesPerson]"
+                      length="200"
+                      lineageId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesPerson]"
+                      name="SalesPerson"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CustomerID]"
+                      dataType="i4"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="50"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="50"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CompanyName]"
+                      dataType="wstr"
+                      length="200"
+                      name="CompanyName" />
+                    <externalMetadataColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[SalesPerson]"
+                      dataType="wstr"
+                      length="200"
+                      name="SalesPerson" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CustomerID]"
+                      dataType="i4"
+                      lineageId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CustomerID]"
+                      name="CustomerID" />
+                    <outputColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CompanyName]"
+                      dataType="wstr"
+                      length="200"
+                      lineageId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CompanyName]"
+                      name="CompanyName" />
+                    <outputColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[SalesPerson]"
+                      dataType="wstr"
+                      length="200"
+                      lineageId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[SalesPerson]"
+                      name="SalesPerson" />
+                    <outputColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Derevies Column Data Flow Task\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Derevies Column Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Derevies Column Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="FirstName"
+                      lineageId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\Derevies Column Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="LastName"
+                      lineageId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\Derevies Column Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[SalesPerson]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="SalesPerson"
+                      lineageId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesPerson]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Derevies Column Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Derevies Column Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Derevies Column Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ContactFullName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\Derevies Column Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ContactFullName]"
+                      name="ContactFullName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,200)(#{Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[FirstName]} + " " + #{Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[LastName]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,200)(FirstName + " " + LastName)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Derevies Column Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[SalesPersonAliasFindString]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Derevies Column Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[SalesPersonAliasFindString]"
+                      name="SalesPersonAliasFindString"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[FINDSTRING](#{Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesPerson]},"\\",1)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">FINDSTRING(SalesPerson,"\\",1)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Derevies Column Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[SalesPersonAliasSubstring]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="128"
+                      lineageId="Package\Derevies Column Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[SalesPersonAliasSubstring]"
+                      name="SalesPersonAliasSubstring"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[SUBSTRING](#{Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesPerson]},[FINDSTRING](#{Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesPerson]},"\\",1) + 1,128)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING(SalesPerson,FINDSTRING(SalesPerson,"\\",1) + 1,128)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Derevies Column Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[SalesPersonAlias]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\Derevies Column Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[SalesPersonAlias]"
+                      name="SalesPersonAlias"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,200)[SUBSTRING](#{Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesPerson]},[FINDSTRING](#{Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesPerson]},"\\",1) + 1,128)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,200)SUBSTRING(SalesPerson,FINDSTRING(SalesPerson,"\\",1) + 1,128)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Derevies Column Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Derevies Column Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Derevies Column Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Derevies Column Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Derevies Column Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Derevies Column Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Derevies Column Data Flow Task.Paths[ADO NET Source Output]"
+              endId="Package\Derevies Column Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+              name="ADO NET Source Output"
+              startId="Package\Derevies Column Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Derevies Column Data Flow Task.Paths[Derived Column Output]"
+              endId="Package\Derevies Column Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Derevies Column Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="234.666666666667,42.6666666666667"
+          Id="Package\Derevies Column Data Flow Task"
+          TopLeft="49.6666660085321,29.7666662327449" />
+        <NodeLayout
+          Size="204,42.6666666666667"
+          Id="Package\Aggregate Data Flow Task"
+          TopLeft="76.2499988637865,95.3333316286405" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Derevies Column Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="158.666666666667,42.6666666666667"
+          Id="Package\Derevies Column Data Flow Task\ADO NET Source"
+          TopLeft="75.4166655428708,24.2666662327449" />
+        <NodeLayout
+          Size="154.666666666667,42.6666666666667"
+          Id="Package\Derevies Column Data Flow Task\Derived Column"
+          TopLeft="81.3541654543951,105.191664785693" />
+        <EdgeLayout
+          Id="Package\Derevies Column Data Flow Task.Paths[ADO NET Source Output]"
+          TopLeft="156.718748831966,66.9333328994115">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38.2583318862816"
+              Start="0,0"
+              End="0,30.7583318862816">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.7583318862816" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,7.3791659431408,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="180,42.6666666666667"
+          Id="Package\Derevies Column Data Flow Task\ADO NET Destination"
+          TopLeft="79.6874988125638,191.208329914262" />
+        <EdgeLayout
+          Id="Package\Derevies Column Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="158.687498787728,147.85833145236">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="11.0000000248353,43.3499984619021"
+              Start="0,0"
+              End="11.0000000248353,35.8499984619021">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.6749992309511" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.6749992309511"
+                    Point2="0,21.6749992309511"
+                    Point3="4,21.6749992309511" />
+                  <mssgle:LineSegment
+                    End="7.00000002483532,21.6749992309511" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7.00000002483532,21.6749992309511"
+                    Point2="11.0000000248353,21.6749992309511"
+                    Point3="11.0000000248353,25.6749992309511" />
+                  <mssgle:LineSegment
+                    End="11.0000000248353,35.8499984619021" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-2.49999998758234,26.6749992309511,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Derevies Column Data Flow Task\ADO NET Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Derevies Column Data Flow Task\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Aggregate Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="158.666666666667,42.6666666666667"
+          Id="Package\Aggregate Data Flow Task\ADO NET Source"
+          TopLeft="161.333333333333,66.6666666666667" />
+        <NodeLayout
+          Size="128,42.6666666666667"
+          Id="Package\Aggregate Data Flow Task\Aggregate"
+          TopLeft="178.666666666667,143.333333333333" />
+        <EdgeLayout
+          Id="Package\Aggregate Data Flow Task.Paths[ADO NET Source Output]"
+          TopLeft="241.666666666667,109.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34"
+              Start="0,0"
+              End="0,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="180,42.6666666666667"
+          Id="Package\Aggregate Data Flow Task\ADO NET Destination"
+          TopLeft="166.666666666667,228.666666666667" />
+        <EdgeLayout
+          Id="Package\Aggregate Data Flow Task.Paths[Aggregate Output 1]"
+          TopLeft="242.666666666667,186">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14,42.6666666666666"
+              Start="0,0"
+              End="14,35.1666666666666">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.3333333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.3333333333333"
+                    Point2="0,21.3333333333333"
+                    Point3="4,21.3333333333333" />
+                  <mssgle:LineSegment
+                    End="9.99999999999997,21.3333333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9.99999999999997,21.3333333333333"
+                    Point2="14,21.3333333333333"
+                    Point3="14,25.3333333333333" />
+                  <mssgle:LineSegment
+                    End="14,35.1666666666666" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Aggregate Data Flow Task\ADO NET Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Aggregate Data Flow Task\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

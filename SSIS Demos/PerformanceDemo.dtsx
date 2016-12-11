@@ -1,0 +1,1176 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/11/2016 2:07:17 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-P42C8U26"
+  DTS:CreatorName="LAPTOP-P42C8U26\elawa"
+  DTS:DTSID="{36E72821-E62C-441A-8EC8-6AF08F603EDA}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="PerformanceDemo"
+  DTS:PackageType="5"
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{7F36ADE1-5F3C-4628-8621-37546B7DD39A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-P42C8U26\SQLEXPRESS.AdventureWorksLT2012]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{ED13C0DC-9634-4A1F-9772-1C5920085E5E}"
+      DTS:ObjectName="LAPTOP-P42C8U26\SQLEXPRESS.AdventureWorksLT2012">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=LAPTOP-P42C8U26\SQLEXPRESS;Initial Catalog=AdventureWorksLT2012;Integrated Security=True;Application Name=SSIS-AggregateAndDerivedColumns-{ED13C0DC-9634-4A1F-9772-1C5920085E5E}LAPTOP-P42C8U26\SQLEXPRESS.AdventureWorksLT2012;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-P42C8U26\SQLEXPRESS.DWAdventureWorksLT2012v1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{D6DB61EE-3C04-414C-BBB3-F1DFF0CF2F48}"
+      DTS:ObjectName="LAPTOP-P42C8U26\SQLEXPRESS.DWAdventureWorksLT2012v1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=LAPTOP-P42C8U26\SQLEXPRESS;Initial Catalog=DWAdventureWorksLT2012v1;Integrated Security=True;Application Name=SSIS-PerformanceDemo-{D6DB61EE-3C04-414C-BBB3-F1DFF0CF2F48}LAPTOP-P42C8U26\SQLEXPRESS.DWAdventureWorksLT2012v1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-P42C8U26\SQLEXPRESS.DWAdventureWorksLT2012v1 1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{E2D35AE6-1CE4-47EA-A365-1764E897FF44}"
+      DTS:ObjectName="LAPTOP-P42C8U26\SQLEXPRESS.DWAdventureWorksLT2012v1 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=LAPTOP-P42C8U26\SQLEXPRESS;Initial Catalog=DWAdventureWorksLT2012v1;Integrated Security=True;Application Name=SSIS-AggregateAndDerivedColumns-{E2D35AE6-1CE4-47EA-A365-1764E897FF44}LAPTOP-P42C8U26\SQLEXPRESS.DWAdventureWorksLT2012v1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Hybrid SQL Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{70F68F76-A63E-4938-9EF0-4EBC6B9B0675}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Hybrid SQL Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Hybrid SQL Data Flow Task\ADO NET Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DimCustomers"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Hybrid SQL Data Flow Task\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-P42C8U26\SQLEXPRESS.DWAdventureWorksLT2012v1]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-P42C8U26\SQLEXPRESS.DWAdventureWorksLT2012v1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Hybrid SQL Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[CustomerID]"
+                      cachedDataType="i4"
+                      cachedName="CustomerID"
+                      externalMetadataColumnId="Package\Hybrid SQL Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CustomerID]"
+                      lineageId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CustomerID]" />
+                    <inputColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[ContactFullName]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="ContactFullName"
+                      externalMetadataColumnId="Package\Hybrid SQL Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ContactFullName]"
+                      lineageId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[ContactFullName]" />
+                    <inputColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[CompanyName]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="CompanyName"
+                      externalMetadataColumnId="Package\Hybrid SQL Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CompanyName]"
+                      lineageId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CompanyName]" />
+                    <inputColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[SalesPersonAlias]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="SalesPersonAlias"
+                      externalMetadataColumnId="Package\Hybrid SQL Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[SalesPersonAlias]"
+                      lineageId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesPersonAlias]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CustomerKey]"
+                      dataType="i4"
+                      name="CustomerKey" />
+                    <externalMetadataColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CustomerID]"
+                      dataType="i4"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ContactFullName]"
+                      dataType="wstr"
+                      length="200"
+                      name="ContactFullName" />
+                    <externalMetadataColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CompanyName]"
+                      dataType="wstr"
+                      length="200"
+                      name="CompanyName" />
+                    <externalMetadataColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[SalesPersonAlias]"
+                      dataType="wstr"
+                      length="200"
+                      name="SalesPersonAlias" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Hybrid SQL Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Hybrid SQL Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Hybrid SQL Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Hybrid SQL Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Hybrid SQL Data Flow Task\ADO NET Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="ADO NET Source"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."vETLDimCustomers"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-P42C8U26\SQLEXPRESS.DWAdventureWorksLT2012v1]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-P42C8U26\SQLEXPRESS.DWAdventureWorksLT2012v1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CustomerID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CustomerID]"
+                      lineageId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CustomerID]"
+                      name="CustomerID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[ContactFullName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[ContactFullName]"
+                      length="200"
+                      lineageId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[ContactFullName]"
+                      name="ContactFullName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CompanyName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CompanyName]"
+                      length="200"
+                      lineageId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CompanyName]"
+                      name="CompanyName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesPersonAlias]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[SalesPersonAlias]"
+                      length="200"
+                      lineageId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesPersonAlias]"
+                      name="SalesPersonAlias"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CustomerID]"
+                      dataType="i4"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[ContactFullName]"
+                      dataType="wstr"
+                      length="200"
+                      name="ContactFullName" />
+                    <externalMetadataColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CompanyName]"
+                      dataType="wstr"
+                      length="200"
+                      name="CompanyName" />
+                    <externalMetadataColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[SalesPersonAlias]"
+                      dataType="wstr"
+                      length="200"
+                      name="SalesPersonAlias" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CustomerID]"
+                      dataType="i4"
+                      lineageId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CustomerID]"
+                      name="CustomerID" />
+                    <outputColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ContactFullName]"
+                      dataType="wstr"
+                      length="200"
+                      lineageId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ContactFullName]"
+                      name="ContactFullName" />
+                    <outputColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CompanyName]"
+                      dataType="wstr"
+                      length="200"
+                      lineageId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CompanyName]"
+                      name="CompanyName" />
+                    <outputColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[SalesPersonAlias]"
+                      dataType="wstr"
+                      length="200"
+                      lineageId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[SalesPersonAlias]"
+                      name="SalesPersonAlias" />
+                    <outputColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Hybrid SQL Data Flow Task.Paths[ADO NET Source Output]"
+              endId="Package\Hybrid SQL Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\Hybrid SQL Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Pure SQL Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6CD308E7-CF70-40F8-AD95-571564D37EEF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Pure SQL Execute SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D6DB61EE-3C04-414C-BBB3-F1DFF0CF2F48}"
+          SQLTask:SqlStatementSource="pETLDimCustomers" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Pure SSIS Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{38609661-1131-400D-8B79-6A19BEE9A0D3}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Pure SSIS Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Pure SSIS Data Flow Task\ADO NET Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DimCustomers"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Pure SSIS Data Flow Task\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-P42C8U26\SQLEXPRESS.DWAdventureWorksLT2012v1 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-P42C8U26\SQLEXPRESS.DWAdventureWorksLT2012v1 1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Pure SSIS Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[CustomerID]"
+                      cachedDataType="i4"
+                      cachedName="CustomerID"
+                      externalMetadataColumnId="Package\Pure SSIS Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CustomerID]"
+                      lineageId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CustomerID]" />
+                    <inputColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[CompanyName]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="CompanyName"
+                      externalMetadataColumnId="Package\Pure SSIS Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CompanyName]"
+                      lineageId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CompanyName]" />
+                    <inputColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[ContactFullName]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="ContactFullName"
+                      externalMetadataColumnId="Package\Pure SSIS Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ContactFullName]"
+                      lineageId="Package\Pure SSIS Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ContactFullName]" />
+                    <inputColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[SalesPersonAlias]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="SalesPersonAlias"
+                      externalMetadataColumnId="Package\Pure SSIS Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[SalesPersonAlias]"
+                      lineageId="Package\Pure SSIS Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[SalesPersonAlias]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CustomerKey]"
+                      dataType="i4"
+                      name="CustomerKey" />
+                    <externalMetadataColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CustomerID]"
+                      dataType="i4"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ContactFullName]"
+                      dataType="wstr"
+                      length="200"
+                      name="ContactFullName" />
+                    <externalMetadataColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CompanyName]"
+                      dataType="wstr"
+                      length="200"
+                      name="CompanyName" />
+                    <externalMetadataColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[SalesPersonAlias]"
+                      dataType="wstr"
+                      length="200"
+                      name="SalesPersonAlias" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Pure SSIS Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Pure SSIS Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Pure SSIS Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Pure SSIS Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Pure SSIS Data Flow Task\ADO NET Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="ADO NET Source"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+  [CustomerID] 
+, [FirstName] 
+, [LastName]
+, [CompanyName] = Cast( [CompanyName] AS nvarchar(200) )
+, [SalesPerson] = Cast( [SalesPerson] AS nvarchar(200) )
+FROM [AdventureWorksLT2012].[SalesLT].[Customer]
+ORDER BY [CustomerID]</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Pure SSIS Data Flow Task\ADO NET Source.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-P42C8U26\SQLEXPRESS.AdventureWorksLT2012]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-P42C8U26\SQLEXPRESS.AdventureWorksLT2012]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CustomerID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CustomerID]"
+                      lineageId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CustomerID]"
+                      name="CustomerID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      length="50"
+                      lineageId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      length="50"
+                      lineageId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CompanyName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CompanyName]"
+                      length="200"
+                      lineageId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CompanyName]"
+                      name="CompanyName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesPerson]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[SalesPerson]"
+                      length="200"
+                      lineageId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesPerson]"
+                      name="SalesPerson"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CustomerID]"
+                      dataType="i4"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="50"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="50"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CompanyName]"
+                      dataType="wstr"
+                      length="200"
+                      name="CompanyName" />
+                    <externalMetadataColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[SalesPerson]"
+                      dataType="wstr"
+                      length="200"
+                      name="SalesPerson" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CustomerID]"
+                      dataType="i4"
+                      lineageId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CustomerID]"
+                      name="CustomerID" />
+                    <outputColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CompanyName]"
+                      dataType="wstr"
+                      length="200"
+                      lineageId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CompanyName]"
+                      name="CompanyName" />
+                    <outputColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[SalesPerson]"
+                      dataType="wstr"
+                      length="200"
+                      lineageId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[SalesPerson]"
+                      name="SalesPerson" />
+                    <outputColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Pure SSIS Data Flow Task\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Pure SSIS Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Pure SSIS Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="FirstName"
+                      lineageId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\Pure SSIS Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="LastName"
+                      lineageId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\Pure SSIS Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[SalesPerson]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="SalesPerson"
+                      lineageId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesPerson]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Pure SSIS Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Pure SSIS Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Pure SSIS Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ContactFullName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\Pure SSIS Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ContactFullName]"
+                      name="ContactFullName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,200)(#{Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[FirstName]} + " " + #{Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[LastName]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,200)(FirstName + " " + LastName)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Pure SSIS Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[SalesPersonAliasFindString]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Pure SSIS Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[SalesPersonAliasFindString]"
+                      name="SalesPersonAliasFindString"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[FINDSTRING](#{Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesPerson]},"\\",1)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">FINDSTRING(SalesPerson,"\\",1)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Pure SSIS Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[SalesPersonAliasSubstring]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="128"
+                      lineageId="Package\Pure SSIS Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[SalesPersonAliasSubstring]"
+                      name="SalesPersonAliasSubstring"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[SUBSTRING](#{Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesPerson]},[FINDSTRING](#{Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesPerson]},"\\",1) + 1,128)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING(SalesPerson,FINDSTRING(SalesPerson,"\\",1) + 1,128)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Pure SSIS Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[SalesPersonAlias]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\Pure SSIS Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[SalesPersonAlias]"
+                      name="SalesPersonAlias"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,200)[SUBSTRING](#{Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesPerson]},[FINDSTRING](#{Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[SalesPerson]},"\\",1) + 1,128)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,200)SUBSTRING(SalesPerson,FINDSTRING(SalesPerson,"\\",1) + 1,128)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Pure SSIS Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Pure SSIS Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Pure SSIS Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Pure SSIS Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Pure SSIS Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Pure SSIS Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Pure SSIS Data Flow Task.Paths[ADO NET Source Output]"
+              endId="Package\Pure SSIS Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+              name="ADO NET Source Output"
+              startId="Package\Pure SSIS Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Pure SSIS Data Flow Task.Paths[Derived Column Output]"
+              endId="Package\Pure SSIS Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Pure SSIS Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Reset Database Execute Package Task"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{D3350B85-F6E8-4A86-95EC-E7909B60F5A0}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Reset Database Execute Package Task"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ResetDB.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{F10E001D-AC87-4B3D-A99B-7C1EC35EE29D}"
+      DTS:From="Package\Reset Database Execute Package Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Pure SQL Execute SQL Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{E400E307-A767-41B5-9DA1-F491E75D6EB7}"
+      DTS:From="Package\Pure SQL Execute SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Hybrid SQL Data Flow Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{F6B15B78-E96B-4703-A596-3D510F6E3CD4}"
+      DTS:From="Package\Hybrid SQL Data Flow Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Pure SSIS Data Flow Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="208,42.6666666666667"
+          Id="Package\Hybrid SQL Data Flow Task"
+          TopLeft="120.238093446408,183.857139569521" />
+        <NodeLayout
+          Size="210.666666666667,42.6666666666667"
+          Id="Package\Pure SQL Execute SQL Task"
+          TopLeft="112.916664984077,109.633331372937" />
+        <NodeLayout
+          Size="201.333333333334,42.6666666666667"
+          Id="Package\Pure SSIS Data Flow Task"
+          TopLeft="111.845236428614,252.695233576695" />
+        <NodeLayout
+          Size="261.333333333334,42.6666666666667"
+          Id="Package\Reset Database Execute Package Task"
+          TopLeft="91.6666661947966,23.166667325298" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="220.291665589437,65.8333339919646">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.799997380972"
+              Start="0,0"
+              End="0,36.299997380972">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.299997380972" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="221.244045881909,152.299998039603">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.5571415299177"
+              Start="0,0"
+              End="0,24.0571415299177">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.0571415299177" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="224.238093446408,226.523806236188">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-11.7261903511271,26.1714273405077"
+              Start="0,0"
+              End="-11.7261903511271,18.6714273405077">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.08571367025385" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.08571367025385"
+                    Point2="0,13.0857136702539"
+                    Point3="-4,13.0857136702539" />
+                  <mssgle:LineSegment
+                    End="-7.72619035112706,13.0857136702539" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-7.72619035112706,13.0857136702539"
+                    Point2="-11.7261903511271,13.0857136702539"
+                    Point3="-11.7261903511271,17.0857136702539" />
+                  <mssgle:LineSegment
+                    End="-11.7261903511271,18.6714273405077" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Hybrid SQL Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="158.666666666667,42.6666666666667"
+          Id="Package\Hybrid SQL Data Flow Task\ADO NET Source"
+          TopLeft="132.499998025596,38.9999993026257" />
+        <NodeLayout
+          Size="180,42.6666666666667"
+          Id="Package\Hybrid SQL Data Flow Task\ADO NET Destination"
+          TopLeft="132.499998025596,121.333331163724" />
+        <EdgeLayout
+          Id="Package\Hybrid SQL Data Flow Task.Paths[ADO NET Source Output]"
+          TopLeft="211.95833143654,81.6666659692923">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39.666665194432"
+              Start="0,0"
+              End="0,32.166665194432">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.166665194432" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Hybrid SQL Data Flow Task\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Hybrid SQL Data Flow Task\ADO NET Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Pure SSIS Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="180,42.6666666666667"
+          Id="Package\Pure SSIS Data Flow Task\ADO NET Destination"
+          TopLeft="59.0208321458971,192.541663247595" />
+        <NodeLayout
+          Size="158.666666666667,42.6666666666667"
+          Id="Package\Pure SSIS Data Flow Task\ADO NET Source"
+          TopLeft="75.4166655428708,24.2666662327449" />
+        <NodeLayout
+          Size="154.666666666667,42.6666666666667"
+          Id="Package\Pure SSIS Data Flow Task\Derived Column"
+          TopLeft="81.3541654543951,105.191664785693" />
+        <EdgeLayout
+          Id="Package\Pure SSIS Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="158.687498787728,147.85833145236">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9.66666664183128,44.6833317952357"
+              Start="0,0"
+              End="-9.66666664183128,37.1833317952357">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.3416658976178" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.3416658976178"
+                    Point2="0,22.3416658976178"
+                    Point3="-4,22.3416658976178" />
+                  <mssgle:LineSegment
+                    End="-5.66666664183128,22.3416658976178" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.66666664183128,22.3416658976178"
+                    Point2="-9.66666664183128,22.3416658976178"
+                    Point3="-9.66666664183128,26.3416658976178" />
+                  <mssgle:LineSegment
+                    End="-9.66666664183128,37.1833317952357" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Pure SSIS Data Flow Task.Paths[ADO NET Source Output]"
+          TopLeft="156.718748831966,66.9333328994115">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38.2583318862816"
+              Start="0,0"
+              End="0,30.7583318862816">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.7583318862816" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
